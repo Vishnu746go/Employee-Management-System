@@ -1,0 +1,30 @@
+<div class="user-form-container">
+    <h1>User Deletion</h1>
+  
+    <form class="user-form" [formGroup]="userForm" (ngSubmit)="deleteUser()">
+    <h2>Select a User</h2>
+    <div class="user-grid">
+      <div class="user-tile" *ngFor="let user of users">
+        <label [for]="'user-' + user.id">
+          <input
+            type="radio"
+            [id]="'user-' + user.id"
+            formControlName="selectedUserId"
+            [value]="user.id"
+          />
+          {{ user.name }}
+        </label>
+      </div>
+    </div>
+    
+    
+    
+  
+      <div *ngIf="userForm.get('selectedUserId')?.invalid && userForm.touched" class="error-message">
+        Please select a user to delete.
+      </div>
+  
+      <button type="submit">Delete User</button>
+    </form>
+  </div>
+  

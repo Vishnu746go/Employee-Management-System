@@ -1,0 +1,83 @@
+.user-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.user-form .group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.user-form .group div {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 100%;
+}
+
+.user-form-container label {
+    flex: 1;
+    font-family: var(--font-secondary);
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: center; 
+}
+
+.user-form-container input,
+.user-form-container select {
+    flex: 2;
+    width: 80%; 
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--button-radius);
+    font-family: var(--font-body);
+    transition: 0.3s;
+}
+
+.error-message {
+    width: 100%;
+    text-align: center; 
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    color: var(--error-color);
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.user-form-container button {
+    width: 80%;
+    padding: var(--button-padding);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    font-family: var(--font-secondary);
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.user-form-container button:hover {
+    background: var(--secondary-color);
+    box-shadow: var(--box-shadow);
+}

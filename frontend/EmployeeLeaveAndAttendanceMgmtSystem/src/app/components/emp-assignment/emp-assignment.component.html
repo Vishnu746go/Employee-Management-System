@@ -1,0 +1,48 @@
+<div class="container">
+    <h1>Employee Manager Assignment</h1>
+    <div class="wrapper">
+        <div class="form-group">
+            <h2>Select Manager</h2>
+            <label for="manager"><p>Choose a Manager:</p></label>
+            <select id="manager" (change)="onManagerChange($event)" required>
+                <option value="">-- Select Manager --</option>
+                <option *ngFor="let manager of managers" [value]="manager.id">{{ manager.name }}</option>
+            </select>
+            
+
+            <p *ngIf="!selectedManager && submitted" class="error-message">
+                Please select a manager before proceeding.
+            </p>
+        </div>
+
+        <div class="form-group" *ngIf="assignedEmployees.length > 0">
+            <h2>Employees Already Assigned</h2>
+            <ul class="assigned-list">
+                <li *ngFor="let emp of assignedEmployees">
+                    <p>{{ emp.name }}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <h2>Assign Employees</h2>
+            <p>Select employees to assign to the manager.</p>
+            <div class="emp-wrapper">
+                <div *ngFor="let employee of employees" class="employee-list">
+                    <div>
+                        <input type="checkbox" [value]="employee.id" (change)="toggleSelection(employee.id, $event)">
+                        <p>{{ employee.name }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <p *ngIf="selectedEmployees.length === 0 && submitted" class="error-message">
+                Please select at least one employee.
+            </p>
+        </div>
+
+        <button (click)="onSubmit()">
+            Assign
+        </button>
+    </div>
+</div>

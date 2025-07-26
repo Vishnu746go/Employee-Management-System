@@ -1,0 +1,49 @@
+<div class="container">
+    <h1>Attendance</h1>
+  
+    <div class="content-wrapper">
+      
+      <div class="details-section">
+        <div class="wrapper">
+            <div class="live-time">
+                <h2>Current Time</h2>
+                <p>{{currentTime}}</p>
+            </div>
+          <h2>Today's Attendance</h2>
+          <p *ngIf="clockInTime">Clocked In: {{ clockInTime }}</p>
+          <p *ngIf="clockOutTime">Clocked Out: {{ clockOutTime }}</p>
+          <p *ngIf="!clockInTime">You haven't clocked in yet.</p>
+          <p *ngIf="!clockInTime">Don't Forget to clock your attendance.</p>
+
+  
+          <button (click)="clockIn()">Clock In</button>
+          <button (click)="clockOut()">Clock Out</button>
+        </div>
+      </div>
+  
+      <div class="attendance-section">
+        <div class="wrapper-attendance">
+          <div class="attendance-history">
+            <h2>Recent Attendance History</h2>
+            <table *ngIf="attendanceHistory.length > 0" class="attendance-table">
+              <tr>
+                <td><strong>Date</strong></td>
+                <td><strong>Status</strong></td>
+                <td><strong>Working Hours</strong></td>
+              </tr>
+              <tr *ngFor="let record of attendanceHistory">
+                <td>{{ record.date }}</td>
+                <td>{{ record.status  === 'PRESENT' && !record.clockOutTime ? "ABSENT" : record.status }}</td>
+                <td>{{ record.workHours || 0 }} Hours</td>
+              </tr>
+            </table>
+  
+            <p *ngIf="attendanceHistory.length === 0" class="error-message">
+              No recent attendance history available.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

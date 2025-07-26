@@ -1,0 +1,13 @@
+.employee-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.content{
+    background-color: var(--background-color);
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+    box-shadow: var(--box-shadow);
+}

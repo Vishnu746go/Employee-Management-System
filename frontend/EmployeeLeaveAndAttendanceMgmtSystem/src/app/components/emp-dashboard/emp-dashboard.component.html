@@ -1,0 +1,40 @@
+<div class="container">
+    <h1 class="employee-name">Welcome {{ employeeName }}</h1>
+  
+    <div class="content-wrapper">
+      
+      <div class="attendance-box">
+        <h2>Today's Attendance</h2>
+  
+        <p *ngIf="!clockInTime">You haven't clocked in yet today.</p>
+        <p *ngIf="clockInTime">Clock-in Time: {{ clockInTime }}</p>
+  
+        <p *ngIf="clockOutTime">Clock-out Time: {{ clockOutTime }}</p>
+        <p *ngIf="!clockOutTime && clockInTime">Don't Forget to clock your attendance!</p>
+  
+        <button (click)="goToAttendance()">Go to Attendance</button>
+      </div>
+  
+      <div class="shift-details-box">
+        <h2>Today's Shift Details</h2>
+        <table *ngIf="shiftData" class="shift-table">
+          <tr>
+            <td><strong>Shift ID:</strong></td>
+            <td>{{ shiftData.id }}</td>
+          </tr>
+          <tr>
+            <td><strong>Shift Date:</strong></td>
+            <td>{{ shiftData.shiftDate }}</td>
+          </tr>
+          <tr>
+            <td><strong>Shift Type:</strong></td>
+            <td>{{ shiftData.shiftType }}</td>
+          </tr>
+        </table>
+  
+        <p *ngIf="!shiftData" class="error-message">No shift data found for today.</p>
+      </div>
+  
+    </div>
+  </div>
+  

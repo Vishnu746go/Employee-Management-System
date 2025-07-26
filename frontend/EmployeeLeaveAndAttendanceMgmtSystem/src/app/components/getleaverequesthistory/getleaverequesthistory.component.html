@@ -1,0 +1,28 @@
+<div class="leave-history-container">
+    <app-getleavebalance></app-getleavebalance>
+    <h3>Recent Leave Requests</h3>
+    <table class="leave-history-table">
+        <thead>
+            <tr>
+                <th>Leave Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let request of leaveRequests">
+                <td>{{ request.leaveType }}</td>
+                <td>{{ request.startDate }}</td>
+                <td>{{ request.endDate }}</td>
+                <td [ngClass]="{
+                        'status-approved': request.status === 'APPROVED',
+                        'status-rejected': request.status === 'REJECTED',
+                        'status-pending': request.status === 'PENDING'
+                    }">
+                    {{ request.status }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

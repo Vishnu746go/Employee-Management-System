@@ -1,0 +1,76 @@
+.container {
+    width: 100%; 
+    margin: auto;
+    padding: 10px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.attendance-wrapper{
+    padding: 20px;
+    margin: auto;
+    width: 90%; 
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.attendance-wrapper p{
+    margin-bottom: 10px;
+}
+
+.attendance-table {
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+}
+
+.attendance-table tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.attendance-table td,th {
+    padding: 10px;
+    font-family: var(--font-body);
+}
+
+.status-present {
+    color: green;
+    font-weight: 600;
+  }
+  
+  .status-leave {
+    color: gray;
+    font-weight: 500;
+  }
+  
+  .status-absent {
+    color: crimson;
+    font-weight: 600;
+  }
+  
+  .pagination-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin-top: 10px;
+    font-family: var(--font-body);
+  }
+  
+  .pagination-buttons button{
+    background-color: var(--primary-color);
+    font-family: var(--font-body);
+    color: white;
+    padding: var(--button-padding);
+    border: none;
+    border-radius: var(--button-radius);
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  

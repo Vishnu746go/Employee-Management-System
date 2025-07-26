@@ -1,0 +1,127 @@
+.user-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  .user-form-container h2 {
+    margin-top: 0%;
+    font-family: var(--font-secondary);
+    margin-bottom: 16px;
+  }
+
+  .user-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 12px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .user-tile{
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;    
+  }
+  
+  .user-tile label {
+    display: flex;
+    align-items: center; 
+    gap: 4px;          
+    justify-content: flex-start;
+    font-family: var(--font-body);
+    font-weight: bold;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }  
+  
+  .user-tile label:hover {
+    background-color: #eef;
+  }
+  
+  .user-tile input[type="radio"] {
+    accent-color: var(--primary-color);
+  }  
+  
+  .user-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+  }
+  
+  .user-form .group {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  
+  .user-form .input-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .user-form-container label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+  }
+  
+  
+  .user-form-container input[type="radio"] {
+    accent-color: var(--primary-color);
+    cursor: pointer;
+  }
+  
+  .error-message {
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    color: var(--error-color);
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .user-form-container button {
+    width: 80%;
+    padding: var(--button-padding);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    font-family: var(--font-secondary);
+    transition: 0.3s;
+    text-transform: uppercase;
+    margin-top: 20px;
+  }
+  
+  .user-form-container button:hover {
+    background: var(--secondary-color);
+    box-shadow: var(--box-shadow);
+  }
+  

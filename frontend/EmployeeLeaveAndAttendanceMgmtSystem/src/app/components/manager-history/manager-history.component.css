@@ -1,0 +1,131 @@
+.report-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-wrapper {
+  width: 100%;
+}
+
+.form-group {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.report-form label p {
+  font-weight: bold;
+  margin: 0 0 5px;
+}
+
+.report-form select,
+.report-form input,
+.report-form label {
+  margin: 8px 0;
+}
+
+
+.report-form select,
+.report-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-secondary);
+  border-radius: var(--button-radius);
+}
+
+.report-form button {
+  background-color: var(--primary-color);
+  font-family: var(--font-body);
+  color: white;
+  padding: var(--button-padding);
+  border: none;
+  border-radius: var(--button-radius);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.report-form button:hover {
+  background-color: var(--secondary-color);
+  box-shadow: var(--box-shadow);
+}
+
+.report-output {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.report-output h3 {
+  font-size: 20px;
+  margin: 4px;
+}
+
+.report-output section {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: var(--box-shadow);
+}
+
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  font-family: var(--font-body); 
+}
+
+.history-table th,
+.history-table td {
+  padding: 8px;
+  text-align: left;
+  font-family: var(--font-body); 
+}
+
+.history-table tr{
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pagination-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+}
+
+.pagination-buttons button{
+  background-color: var(--primary-color);
+  font-family: var(--font-body);
+  color: white;
+  padding: var(--button-padding);
+  border: none;
+  border-radius: var(--button-radius);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.info-message {
+  font-style: italic;
+  color: #777;
+}
+
+.status-positive {
+  color: green;
+  font-weight: bold;
+}
+
+.status-negative {
+  color: red;
+  font-weight: bold;
+}

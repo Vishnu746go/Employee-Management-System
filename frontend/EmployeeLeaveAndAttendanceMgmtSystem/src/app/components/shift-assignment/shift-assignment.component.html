@@ -1,0 +1,41 @@
+<div class="container">
+    <h1>Shift Assignment</h1>
+    <div class="wrapper">
+        <div class="form-group">
+            <h2>Select Employee</h2>
+            <label for="employee"><p>Choose an Employee:</p></label>
+            <select formControlName="userId" (change)="onUserChange($event)">
+                <option value="">-- Select Employee --</option>
+                <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</option>
+            </select>
+            <p *ngIf="submitted && shiftForm.controls['userId'].invalid" class="error-message">
+                Please select an employee.
+            </p>
+        </div>
+
+        <div class="form-group">
+            <h2>Select Shift Type</h2>
+            <label for="shiftType"><p>Choose a Shift Type:</p></label>
+            <select formControlName="shiftType" (change)="onShiftTypeChange($event)">
+                <option value="">-- Select Shift Type --</option>
+                <option value="DAY">DAY</option>
+                <option value="NIGHT">NIGHT</option>
+            </select>
+            <p *ngIf="submitted && shiftForm.controls['shiftType'].invalid" class="error-message">
+                Please select a shift type.
+            </p>
+        </div>
+
+        <div class="form-group">
+            <h2>Select Shift Date</h2>
+            <label for="shiftDate"><p>Choose a Date(Monday Date):</p></label>
+            <input type="date" formControlName="date" (change)="onDateChange($event)">
+            <p *ngIf="submitted && !selectedMondayDate" class="error-message">
+                Please select a valid date.
+            </p>            
+        </div>
+        
+
+        <button (click)="onSubmit()">Assign Shift</button>
+    </div>
+</div>

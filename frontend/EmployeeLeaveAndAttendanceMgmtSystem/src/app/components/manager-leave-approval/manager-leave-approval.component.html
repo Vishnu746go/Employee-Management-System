@@ -1,0 +1,39 @@
+<div class="wrapper">
+    <h1 class="Title">Leave Requests</h1>
+    <div class="manager-leave-approval-container">
+        <div *ngIf="leaveRequests.length === 0" class="no-requests-message">
+            No leave requests at the moment
+        </div>
+
+        <table class="leave-approval-table" *ngIf="leaveRequests.length > 0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Leave Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Reason</th> 
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let request of paginatedLeaveRequests">
+                    <td>{{ request.employeeName }}</td> 
+                    <td>{{ request.leaveType }}</td>
+                    <td>{{ request.startDate }}</td>
+                    <td>{{ request.endDate }}</td>
+                    <td>{{ request.reason }}</td> 
+                    <td class="action-buttons">
+                        <button (click)="updateStatus(request.id, 'APPROVED')" class="approve-btn">Approve</button>
+                        <button (click)="updateStatus(request.id, 'REJECTED')" class="reject-btn">Reject</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination-buttons" *ngIf="leaveRequests.length > pageSize">
+        <button (click)="previousPage()">Previous</button>
+        <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+        <button (click)="nextPage()">Next</button>
+    </div>      
+</div>

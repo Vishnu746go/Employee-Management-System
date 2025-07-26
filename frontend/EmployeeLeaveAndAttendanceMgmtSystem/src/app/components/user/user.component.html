@@ -1,0 +1,54 @@
+<div class="user-form-container">
+    <h1>User Registration Form</h1>
+    <form class="user-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="group">
+            <div class="input-container">
+                <label for="name">Name:</label>
+                <input id="name" type="text" formControlName="name">
+            </div>
+            <div *ngIf="userForm.controls['name'].invalid && userForm.controls['name'].touched" class="error-message">
+                Name is required.
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="input-container">
+                <label for="email">Email:</label>
+                <input id="email" type="email" formControlName="email">
+            </div>
+            <div *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched" class="error-message">
+                Email must be valid.
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="input-container">
+                <label for="password">Password:</label>
+                <input id="password" type="password" formControlName="password">
+            </div>
+            <div *ngIf="userForm.controls['password'].errors?.['required'] && userForm.controls['password'].touched" class="error-message">
+                Password is required.
+              </div>
+            
+              <div *ngIf="userForm.controls['password'].errors?.['minlength'] && userForm.controls['password'].touched" class="error-message">
+                Password must be at least 5 characters long.
+              </div>
+        </div>
+
+        <div class="group">
+            <div class="input-container">
+                <label for="userRole">Role:</label>
+                <select id="userRole" formControlName="userRole">
+                    <option value="">-- Select Role --</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="MANAGER">Manager</option>
+                    <option value="EMPLOYEE">Employee</option>
+                </select>
+            </div>
+            <div *ngIf="userForm.controls['userRole'].invalid && userForm.controls['userRole'].touched" class="error-message">
+                Role selection is required.
+            </div>
+        </div>
+        <button type="submit">Create User</button>
+    </form>
+</div>

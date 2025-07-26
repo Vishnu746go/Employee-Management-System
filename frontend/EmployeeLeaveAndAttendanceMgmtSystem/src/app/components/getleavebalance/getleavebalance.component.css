@@ -1,0 +1,25 @@
+.leave-balance-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    background: white;
+}
+
+.leave-balance-container h3 {
+    font-family: var(--font-secondary);
+    font-weight: bold;
+    color: var(--secondary-color);
+    text-align: center;
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+
+.leave-balance-container p {
+    font-size: 1rem;
+    font-family: var(--font-body);
+    color: var(--text-color);
+    background-color: var(--light-bg);
+}

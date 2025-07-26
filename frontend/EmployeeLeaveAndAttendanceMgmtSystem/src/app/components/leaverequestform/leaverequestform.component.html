@@ -1,0 +1,42 @@
+<form [formGroup]="leaveForm" (ngSubmit)="onSubmit()" class="leave-form-container">
+    <h3>Leave Request</h3>
+
+    <div class="group">
+        <label>Leave Type:</label>
+        <select formControlName="leaveType" required>
+            <option value="">-- Select Leave Type --</option>
+            <option value="SICK">SICK</option>
+            <option value="PAID">PAID</option>
+            <option value="UNPAID">UNPAID</option>
+        </select>
+        <div *ngIf="leaveForm.controls['leaveType'].invalid && leaveForm.controls['leaveType'].touched" class="error-message">
+            Leave type is required.
+        </div>
+    </div>
+
+    <div class="group">
+        <label>Start Date:</label>
+        <input type="date" formControlName="startDate" required>
+        <div *ngIf="leaveForm.controls['startDate'].invalid && leaveForm.controls['startDate'].touched" class="error-message">
+            Start date is required.
+        </div>
+    </div>
+
+    <div class="group">
+        <label>End Date:</label>
+        <input type="date" formControlName="endDate" required>
+        <div *ngIf="leaveForm.controls['endDate'].invalid && leaveForm.controls['endDate'].touched" class="error-message">
+            End date is required.
+        </div>
+    </div>
+
+    <div class="group">
+        <label>Reason:</label>
+        <textarea formControlName="reason" required></textarea>
+        <div *ngIf="leaveForm.controls['reason'].invalid && leaveForm.controls['reason'].touched" class="error-message">
+            Reason must be filled.
+        </div>
+    </div>
+
+    <button type="submit">Submit Request</button>
+</form>

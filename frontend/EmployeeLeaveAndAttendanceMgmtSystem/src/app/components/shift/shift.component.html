@@ -1,0 +1,68 @@
+<div class="container">
+    <h1>Shift Management</h1>
+
+    <div class="content-wrapper">
+        <div class="details-section">
+            <div class="wrapper">
+                <div class="form-group">
+                    <h2>Select Date</h2>
+                    <label for="shiftDate">Choose a Date:</label>
+                    <input type="date" (change)="onDateChange($event)">
+                </div>
+
+                <table *ngIf="shiftData" class="shift-table">
+                    <tr>
+                        <td><strong>Shift ID:</strong></td>
+                        <td>{{ shiftData.id }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User ID:</strong></td>
+                        <td>{{ shiftData.userId }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shift Date:</strong></td>
+                        <td>{{ shiftData.shiftDate }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shift Type:</strong></td>
+                        <td>{{ shiftData.shiftType }}</td>
+                    </tr>
+                </table>
+
+                <p *ngIf="!shiftData" class="error-message">
+                    No shift data found for the selected date.
+                </p>
+
+                <button (click)="submitSwapRequest()">Request Shift Swap</button>
+            </div>
+        </div>
+
+        <div class="swap-section">
+            <div class="wrapper-swap">
+                <div class="swap-balance">
+                    <h2>Swap Balance - {{ shiftSwapBalance }}</h2>
+                </div>
+
+                <div class="swap-history">
+                    <h2>Recent Swap Requests</h2>
+                    <table *ngIf="swapHistory.length > 0" class="shift-table">
+                        <tr>
+                            <td><strong>Shift Date</strong></td>
+                            <td><strong>Shift Type</strong></td>
+                            <td><strong>Status</strong></td>
+                        </tr>
+                        <tr *ngFor="let swap of swapHistory">
+                            <td>{{ swap.shiftDate }}</td>
+                            <td>{{ swap.shiftType }}</td>
+                            <td>{{ swap.status }}</td>
+                        </tr>
+                    </table>
+
+                    <p *ngIf="swapHistory.length === 0" class="error-message">
+                        No recent swap history available.
+                    </p>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

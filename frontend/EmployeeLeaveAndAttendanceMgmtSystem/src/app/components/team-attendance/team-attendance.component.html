@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>Today's Team Attendance</h1>
+
+    <div class="attendance-wrapper">
+        <p><strong>{{ currentDateTime }}</strong></p>
+    
+        <table class="attendance-table" *ngIf="teamData.length > 0">
+        <thead>
+            <tr>
+            <th>Name</th>
+            <th>Clock In</th>
+            <th>Clock Out</th>
+            <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of paginatedTeamData">
+            <td>{{ row.name }}</td>
+            <td>{{ row.clockIn }}</td>
+            <td>{{ row.clockOut }}</td>
+            <td [ngClass]="{
+                'status-present': row.status === 'PRESENT',
+                'status-leave': row.status === 'LEAVE',
+                'status-absent': !row.status || row.status === 'ABSENT'
+              }">
+                {{ row.status || 'ABSENT' }}
+            </td>          
+            </tr>
+        </tbody>
+        </table>
+    
+        <p *ngIf="teamData.length === 0" class="info-message">No Employee's Attendance available.</p>
+    </div>
+    <div class="pagination-buttons" *ngIf="teamData.length > pageSize">
+        <button (click)="previousPage()">Previous</button>
+        <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+        <button (click)="nextPage()">Next</button>
+    </div>  
+</div>
+  

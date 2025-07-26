@@ -1,0 +1,30 @@
+<div class="sidebar">
+    <h2>{{ role }}</h2> 
+    
+    <ul>
+        <!-- Admin Links -->
+        <li *ngIf="role === 'ADMIN'"><a (click)="navigateToPage('')">Dashboard</a></li>
+        <li *ngIf="role === 'ADMIN'"><a (click)="navigateToPage('create-user')">User Creation</a></li>
+        <li *ngIf="role === 'ADMIN'"><a (click)="navigateToPage('assign-emp')">Employee Assignment</a></li>
+        <li *ngIf="role === 'ADMIN'"><a (click)="navigateToPage('delete-user')">User Deletion</a></li>
+
+        <!-- Manager Links -->
+        <li *ngIf="role === 'MANAGER'"><a (click)="navigateToPage('')">Dashboard</a></li>
+        <li *ngIf="role === 'MANAGER'"><a (click)="navigateToPage('team-attendance')">Team Attendance</a></li>
+        <li *ngIf="role === 'MANAGER'"><a (click)="navigateToPage('leave-approval')">Leave Requests</a></li>
+        <li *ngIf="role === 'MANAGER'"><a (click)="navigateToPage('assign-shift')">Shift Assignment</a></li>
+        <li *ngIf="role === 'MANAGER'"><a (click)="navigateToPage('shift-swap-request')">Shift Swap Requests</a></li>
+        <li *ngIf="role === 'MANAGER'">
+            <a routerLink="reports" routerLinkActive="active-link" (click)="navigateToPage('reports')">Reports & Analytics</a>
+        </li>
+          
+
+        <!-- Employee Links -->
+        <li *ngIf="role === 'EMPLOYEE'"><a (click)="navigateToPage('')">Dashboard</a></li>
+        <li *ngIf="role === 'EMPLOYEE'"><a (click)="navigateToPage('attendance')">Attendance</a></li>
+        <li *ngIf="role === 'EMPLOYEE'"><a (click)="navigateToPage('leave')">Leave Request</a></li>
+        <li *ngIf="role === 'EMPLOYEE'"><a (click)="navigateToPage('shift')">Shift Management</a></li>
+    </ul>
+    
+    <button class="logout-btn" (click)="logout()">Logout</button>
+</div>

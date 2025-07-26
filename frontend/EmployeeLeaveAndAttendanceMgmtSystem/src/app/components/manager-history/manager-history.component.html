@@ -1,0 +1,145 @@
+<div class="report-container">
+  <div class="report-wrapper">
+    <div class="form-group">
+      <h2>History</h2>
+      <form [formGroup]="historyForm" (ngSubmit)="fetchHistory()" class="report-form">
+        <label for="user"><p>Select Employee:</p></label>
+        <select formControlName="userId" id="user-select">
+          <option [ngValue]="null">-- Choose Employee --</option>
+          <option *ngFor="let emp of employeeList" [value]="emp.id">{{ emp.name }}</option>
+        </select>
+        <p *ngIf="submitted && historyForm.get('userId')?.invalid" class="error-message">
+          Employee selection is required.
+        </p>
+
+        <label for="operation"><p>Select Data Type:</p></label>
+        <select formControlName="operation" id="operation-select">
+          <option value="">-- Choose Operation --</option>
+          <option value="attendance">Attendance History</option>
+          <option value="leaveRequests">Leave Request History</option>
+          <option value="leaveBalance">Leave Balance</option>
+          <option value="shiftHistory">Shift Assignment History</option>
+          <option value="shiftBalance">Swap Balance</option>
+        </select>
+        <p *ngIf="historyForm.get('operation')?.invalid && submitted" class="error-message">
+          Operation selection is required.
+        </p>
+
+        <button type="submit">Fetch History</button>
+      </form>
+    </div>
+
+    <div class="report-output" *ngIf="historyForm.valid">
+      <section *ngIf="historyForm.value.operation === 'attendance' && historyFetched['attendance']">
+        <h3>Attendance History</h3>
+        <ng-container *ngIf="attendanceHistory.length > 0; else noAttendance">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let record of attendanceHistory | slice:pageIndex['attendance']*5:(pageIndex['attendance']+1)*5">
+                <td>{{ record.date }}</td>
+                <td [ngClass]="{
+                  'status-positive': record.status === 'PRESENT',
+                  'status-negative': record.status === 'ABSENT' || record.status === 'LEAVE'
+                }">
+                  {{ record.status }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-template #noAttendance>
+          <p class="info-message">No attendance records found for this employee.</p>
+        </ng-template>
+      </section>
+
+      <section *ngIf="historyForm.value.operation === 'leaveRequests' && historyFetched['leaveRequests']">
+        <h3>Leave Request History</h3>
+        <ng-container *ngIf="leaveHistory.length > 0; else noLeave">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let leave of leaveHistory | slice:pageIndex['leaveRequests']*5:(pageIndex['leaveRequests']+1)*5">
+                <td>{{ leave.leaveType }}</td>
+                <td>{{ leave.startDate }}</td>
+                <td>{{ leave.endDate }}</td>
+                <td [ngClass]="{
+                  'status-positive': leave.status === 'APPROVED',
+                  'status-negative': leave.status === 'REJECTED'
+                }">
+                  {{ leave.status }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-template #noLeave>
+          <p class="info-message">No leave request history found for this employee.</p>
+        </ng-template>
+      </section>
+
+      <section *ngIf="historyForm.value.operation === 'leaveBalance' && historyFetched['leaveBalance']">
+        <h3>Leave Balance</h3>
+        <ng-container *ngIf="leaveBalance; else noBalance">
+          <p><strong>Paid:</strong> {{ leaveBalance.paidLeaveBalance }}</p>
+          <p><strong>Sick:</strong> {{ leaveBalance.sickLeaveBalance }}</p>
+          <p><strong>Unpaid:</strong> {{ leaveBalance.unpaidLeaveBalance }}</p>
+        </ng-container>
+        <ng-template #noBalance>
+          <p class="info-message">Leave balance not available for this employee.</p>
+        </ng-template>
+      </section>
+
+      <section *ngIf="historyForm.value.operation === 'shiftHistory' && historyFetched['shiftHistory']">
+        <h3>Shift Assignment History</h3>
+        <ng-container *ngIf="shiftHistory.length > 0; else noShifts">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Shift Date</th>
+                <th>Shift Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let shift of shiftHistory | slice:pageIndex['shiftHistory']*5:(pageIndex['shiftHistory']+1)*5">
+                <td>{{ shift.shiftDate }}</td>
+                <td>{{ shift.shiftType }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-template #noShifts>
+          <p class="info-message">No shift assignment records available.</p>
+        </ng-template>
+      </section>
+
+      <section *ngIf="historyForm.value.operation === 'shiftBalance' && historyFetched['shiftBalance']">
+        <h3>Swap Balance</h3>
+        <ng-container *ngIf="shiftBalance !== null; else noSwapBalance">
+          <p><strong>Remaining Swap Balance:</strong> {{ shiftBalance }}</p>
+        </ng-container>
+        <ng-template #noSwapBalance>
+          <p class="info-message">Swap balance not available for this employee.</p>
+        </ng-template>
+      </section>
+
+      <div class="pagination-buttons" *ngIf="hasPagination(historyForm.value.operation) &&getDataLength(historyForm.value.operation) > pageSize && historyFetched[historyForm.value.operation]">
+        <button (click)="previous(historyForm.value.operation)" [disabled]="pageIndex[historyForm.value.operation] === 0">Previous</button>
+        <span>Page {{ pageIndex[historyForm.value.operation] + 1 }} of {{getTotalPages(historyForm.value.operation)}}</span>
+        <button (click)="next(historyForm.value.operation)" [disabled]="!hasNext(historyForm.value.operation)">Next</button>
+      </div>
+    </div>
+  </div>
+</div>

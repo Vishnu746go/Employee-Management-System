@@ -1,0 +1,35 @@
+<div class="container">
+    <h1 class="admin-name">Welcome, Admin</h1>
+  
+    <div class="content-wrapper">
+      <div class="main-admin-box">
+        <h2>Create a New User</h2>
+        <p>You can create managers, employees, or additional admins using this panel.</p>
+      
+        <ul class="user-stats">
+          <li><strong>Total Users: </strong> {{ totalUsers }}</li>
+          <li><strong>Admins: </strong>{{totalUsers - totalManagers - totalEmployees}}</li>
+          <li><strong>Managers:</strong> {{ totalManagers }}</li>
+          <li><strong>Employees:</strong> {{ totalEmployees }}</li>
+        </ul>
+      
+        <button (click)="goToCreateUser()">Go to User Creation</button>
+      </div>
+      
+  
+      <div class="details-wrapper">
+        <div class="admin-box">
+          <h3>Assign Employees to Manager</h3>
+          <p>Assign employees with managers to manage team.</p>
+          <button (click)="goToAssignEmployees()">Go to Assignment</button>
+        </div>
+  
+        <div class="admin-box">
+          <h3>Delete a User</h3>
+          <p>Safely delete accounts from the system.</p>
+          <button (click)="goToDeleteUser()">Go to Delete Panel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

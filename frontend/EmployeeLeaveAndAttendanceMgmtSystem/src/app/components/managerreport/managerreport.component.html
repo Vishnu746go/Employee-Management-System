@@ -1,0 +1,102 @@
+<div class="report-container">
+  <div class="report-wrapper">
+    <div class="form-group">
+      <h2>Generate Reports</h2>
+      <form [formGroup]="reportForm" (ngSubmit)="fetchReports()" class="report-form">
+        <label for="user"><p>Choose an Employee:</p></label>
+        <select formControlName="userId" id="user-select">
+          <option [ngValue]="null">-- Select Employee --</option>
+          <option *ngFor="let emp of employeeList" [value]="emp.id">{{ emp.name }}</option>
+        </select>
+        <p *ngIf="reportForm.get('userId')?.invalid && reportForm.get('userId')?.touched" class="error-message">
+          Please select a user.
+        </p>
+
+        <label for="month"><p>Select Month:</p></label>
+        <input type="month" formControlName="month" id="month" />
+        <p *ngIf="reportForm.get('month')?.invalid && reportForm.get('month')?.touched" class="error-message">
+          Please select a month.
+        </p>
+
+        <button type="submit">Generate Reports</button>
+      </form>
+    </div>
+
+    <div class="report-output" *ngIf="reportsVisible">
+      <section *ngIf="currentPageIndex === 0">
+        <h3>Attendance Report</h3>
+        <ng-container *ngIf="attendanceReport; else noAttendance">
+          <p><strong>Total Working Days:</strong> {{ attendanceReport.totalWorkingDays }}</p>
+          <p><strong>Present Days:</strong> 
+            <span [ngClass]="{'status-positive': attendanceReport.presentDays > 0, 'status-negative': attendanceReport.presentDays === 0}">
+              {{ attendanceReport.presentDays }}
+            </span>
+          </p>
+          <p><strong>Absent Days:</strong> 
+            <span [ngClass]="{'status-negative': attendanceReport.absentDays > 0}">
+              {{ attendanceReport.absentDays }}
+            </span>
+          </p>
+          <p><strong>Leave Days:</strong> {{ attendanceReport.leaveDays }}</p>
+        </ng-container>
+        <ng-template #noAttendance>
+          <p class="info-message">No attendance data found for this employee.</p>
+        </ng-template>
+      </section>
+
+      <section *ngIf="currentPageIndex === 1">
+        <h3>Leave Report</h3>
+        <ng-container *ngIf="leaveReport; else noLeave">
+          <p><strong>Total Leave Days:</strong> {{ leaveReport.totalLeaveDays }}</p>
+          <p><strong>Approved Paid:</strong> {{ leaveReport.approvedPaidLeaveDays }}</p>
+          <p><strong>Approved Sick:</strong> {{ leaveReport.approvedSickLeaveDays }}</p>
+          <p><strong>Approved Unpaid:</strong> 
+            <span [ngClass]="{'status-negative': leaveReport.approvedUnpaidLeaveDays > 0}">
+              {{ leaveReport.approvedUnpaidLeaveDays }}
+            </span>
+          </p>
+          <p><strong>Remaining Paid:</strong> {{ leaveReport.remainingPaidLeave }}</p>
+          <p><strong>Remaining Sick:</strong> {{ leaveReport.remainingSickLeave }}</p>
+          <p><strong>Remaining Unpaid:</strong> 
+            <span [ngClass]="{'status-negative': leaveReport.remainingUnpaidLeave > 0}">
+              {{ leaveReport.remainingUnpaidLeave }}
+            </span>
+          </p>
+        </ng-container>
+        <ng-template #noLeave>
+          <p class="info-message">No leave data found for this employee.</p>
+        </ng-template>
+      </section>
+
+      <section *ngIf="currentPageIndex === 2">
+        <h3>Shift Report</h3>
+        <ng-container *ngIf="shiftReport; else noShift">
+          <p><strong>Total Shifts:</strong> {{ shiftReport.totalShiftsAssigned }}</p>
+          <p><strong>Day Shifts:</strong> {{ shiftReport.dayShifts }}</p>
+          <p><strong>Night Shifts:</strong> {{ shiftReport.nightShifts }}</p>
+          <p><strong>Total Swaps:</strong> {{ shiftReport.totalSwapsRequested }}</p>
+          <p><strong>Successful:</strong> 
+            <span [ngClass]="{'status-positive': shiftReport.successfulSwaps > 0}">
+              {{ shiftReport.successfulSwaps }}
+            </span>
+          </p>
+          <p><strong>Rejected:</strong> 
+            <span [ngClass]="{'status-negative': shiftReport.rejectedSwaps > 0}">
+              {{ shiftReport.rejectedSwaps }}
+            </span>
+          </p>
+          <p><strong>Remaining Swap Balance:</strong> {{ shiftReport.remainingSwapBalance }}</p>
+        </ng-container>
+        <ng-template #noShift>
+          <p class="info-message">This employee was not assigned any shifts in the selected month.</p>
+        </ng-template>
+      </section>
+
+      <div class="pagination-buttons">
+        <button (click)="previousPage()" [disabled]="currentPageIndex === 0">Previous</button>
+        <span>Page {{ currentPageIndex + 1 }} of 3</span>
+        <button (click)="nextPage()" [disabled]="currentPageIndex === 2">Next</button>
+      </div>
+    </div>
+  </div>
+</div>

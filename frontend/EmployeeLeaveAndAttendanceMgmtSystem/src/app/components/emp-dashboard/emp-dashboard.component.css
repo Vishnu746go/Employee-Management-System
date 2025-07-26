@@ -1,0 +1,67 @@
+.container {
+    width: 100%;
+}
+
+.employee-name {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 15px;
+    padding-left: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 20px;
+    font-family: var(--font-body);
+}
+
+.attendance-box, .shift-details-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1 1 0;
+    padding: 15px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-box p{
+    margin-bottom: 8px;
+}
+
+.shift-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+}
+ .shift-table td {
+    padding-bottom: 10px;
+    text-align: center;
+    font-family: var(--font-body);
+}
+
+/* Buttons */
+button {
+    background-color: var(--primary-color);
+    font-family: var(--font-body);
+    color: white;
+    padding: 10px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 100%;
+    max-width: 250px;
+    margin-top: 18px;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    box-shadow: var(--box-shadow);
+}

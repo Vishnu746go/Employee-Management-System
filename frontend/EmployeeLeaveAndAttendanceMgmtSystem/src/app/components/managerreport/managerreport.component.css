@@ -1,0 +1,108 @@
+.report-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.report-form select,
+.report-form input,
+.report-form label {
+  margin: 8px 0;
+}
+
+
+
+.form-group {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.report-form label p {
+  font-weight: bold;
+  margin: 0 0 5px;
+}
+
+.report-form select,
+.report-form input {
+  width: 95%;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--button-radius);
+}
+
+.report-form select{
+  width: 99.5%;
+  font-family: var(--font-secondary);
+}
+
+.report-form button {
+  background-color: var(--primary-color);
+  font-family: var(--font-body);
+  color: white;
+  padding: var(--button-padding);
+  border: none;
+  border-radius: var(--button-radius);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.report-form button:hover {
+  background-color: var(--secondary-color);
+  box-shadow: var(--box-shadow);
+}
+
+.report-output{
+  width: 100%;
+}
+
+.report-output section {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: var(--box-shadow);
+}
+
+.report-output h3 {
+  font-size: 20px;
+  margin: 4px;
+}
+
+.pagination-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-family: var(--font-body);
+}
+
+.pagination-buttons button{
+  background-color: var(--primary-color);
+  font-family: var(--font-body);
+  color: white;
+  padding: var(--button-padding);
+  border: none;
+  border-radius: var(--button-radius);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.info-message {
+  font-style: italic;
+  color: #777;
+}
